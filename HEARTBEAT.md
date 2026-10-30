@@ -10,3 +10,4 @@
 
 # Current status: IDLE — 0 token consumption on heartbeat polls.
 # Bots kept alive by external zero-token watchdog (bot_watchdog.py). User belongings protected.
+# Watchdog hardened with instance lock to prevent duplicates.
