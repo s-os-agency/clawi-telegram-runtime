@@ -1375,14 +1375,13 @@
       <section class="bottomGrid">
         <div class="panel glass">
           <div class="panelHead">
-            <h3>owner-only evidence log</h3>
+            <h3>Saved actions</h3>
             <span class="pill" id="logLockState">Unlocked by Owner</span>
           </div>
 
           <p class="metaLine">
             <span>
-              This log records browser-level contact after the portal opens: load, focus, visibility, clicks, keyboard events,
-              mouse movement samples, commands, voice events, Telegram simulations, Tech Agent activity, pause, stop, export, and management decisions.
+              Saved actions and results from commands you choose to run.
             </span>
           </p>
 
@@ -2009,11 +2008,9 @@ SEIF AGENT PORTAL — DEPLOYMENT NOTES
    - the Owner approves before patch application or export.
    - Major rewrites and deletions require a plan first.
 
-6. Evidence log
-   - Captures browser-level activity after the page opens.
-   - Captures load, focus, blur, visibility, clicks, keyboard actions, sampled mouse movement, commands, voice actions, Telegram simulations, Tech Agent activity, pause, stop, management decisions, export, and clearing.
-   - It cannot detect physical proximity before the browser opens the page.
-   - Physical proximity monitoring needs approved hardware or OS-level sensors.
+6. Saved actions
+   - Records commands you choose to run and their results.
+   - Does not record mouse movement, key presses, focus changes or browsing activity.
 
 7. Zero-cost / revenue doctrine
    - No paid API by default.
@@ -2163,7 +2160,7 @@ SEIF AGENT PORTAL — DEPLOYMENT NOTES
       }
 
       if (p.includes("log") || p.includes("evidence")) {
-        return "The evidence log records browser-level portal contact after page open: clicks, keyboard actions, page focus, visibility, sampled mouse movement, voice actions, Telegram simulations, Tech Agent actions, pause, stop, and exports.";
+        return "Saved actions and results from commands you choose to run.";
       }
 
       if (p.includes("zero") || p.includes("cost") || p.includes("revenue")) {
@@ -2883,61 +2880,12 @@ commercial: zero-cost-first / maximum-revenue checked
       $("deploymentNotesCode").textContent = DEPLOYMENT_NOTES_CODE.trim();
 
       addMessage("mainMessages", "system", "Portal loaded. The Owner controls execution, pause, stop, management, Telegram activation, Tech Agent patching, export, and rollback.");
-      addMessage("messages", "system", "Second-page 16K console is ready. Evidence logging is active after page open.");
+      addMessage("messages", "system", "Your console is ready.");
       addTechMessage("tech", "Tech Agent Code Studio ready.\nI handle minor enhancements only through backup-first, patch-preview, Owner approval, export, and rollback.");
 
       loadStoredEvidence();
 
-      logEvent("portal_loaded", {
-        userAgent: navigator.userAgent,
-        url: location.href,
-        screen: {
-          width: screen.width,
-          height: screen.height,
-          devicePixelRatio: window.devicePixelRatio
-        },
-        doctrine: "Zero-cost policy. Maximum-revenue strategy. owner-controlled execution."
-      });
     }
-
-    document.addEventListener("click", function (event) {
-      const target = event.target;
-      logEvent("mouse_click", {
-        tag: target.tagName,
-        id: target.id || "",
-        className: String(target.className || "").slice(0, 140),
-        text: String(target.innerText || target.value || "").slice(0, 140),
-        x: event.clientX,
-        y: event.clientY
-      });
-    }, true);
-
-    document.addEventListener("keydown", function (event) {
-      logEvent("keyboard", {
-        key: event.key,
-        ctrl: event.ctrlKey,
-        shift: event.shiftKey,
-        alt: event.altKey,
-        meta: event.metaKey
-      });
-    }, true);
-
-    document.addEventListener("mousemove", function (event) {
-      const t = Date.now();
-      if (t - state.lastMouseLogAt > 2500) {
-        state.lastMouseLogAt = t;
-        logEvent("mouse_near_portal_sample", {
-          x: event.clientX,
-          y: event.clientY,
-          note: "Browser-level movement sample after portal was opened."
-        });
-      }
-    }, true);
-
-    window.addEventListener("focus", () => logEvent("window_focus", {}));
-    window.addEventListener("blur", () => logEvent("window_blur", {}));
-    document.addEventListener("visibilitychange", () => logEvent("visibility_change", { visibility: document.visibilityState }));
-    window.addEventListener("beforeunload", () => logEvent("portal_unload", { message: "Portal tab/window closing or navigating away." }));
 
     boot();
   </script>
