@@ -1174,7 +1174,7 @@
         <button id="navChat" class="tabBtn active" onclick="showPage('chat')">Page 1 · Agent Experience</button>
         <button id="navConsole" class="tabBtn" onclick="showPage('console')">Page 2 · 16K Console</button>
         <button class="tabBtn" onclick="openTechAgent()">Tech Agent</button>
-        <span class="pill"><span class="dot"></span><span id="runtimeStatus">Browser runtime live</span></span>
+        <span class="pill"><span class="dot"></span><span id="runtimeStatus">Browser system live</span></span>
       </nav>
     </header>
 
@@ -1193,7 +1193,7 @@
               <div class="badgeRow">
                 <span class="badge critical">Zero-cost policy</span>
                 <span class="badge critical">Maximum revenue strategy</span>
-                <span class="badge warn">owner-only governance</span>
+                <span class="badge warn">Your decisions</span>
                 <span class="badge">Telegram-ready bridge</span>
                 <span class="badge">Tech Agent side studio</span>
               </div>
@@ -1220,7 +1220,7 @@
             </div>
             <div class="frameCard">
               <b>3 · Owner Command Frame</b>
-              <span>Enter executes. Pause freezes. Stop cancels. Governance remains under the Owner.</span>
+              <span>Enter executes. Pause freezes. Stop cancels. You make the decisions.</span>
             </div>
           </div>
 
@@ -1273,7 +1273,7 @@
 
           <section class="panel glass">
             <div class="panelHead">
-              <h3>Owner governance</h3>
+              <h3>Your decisions</h3>
               <span class="pill" id="govState">Owner controlled</span>
             </div>
 
@@ -1317,7 +1317,7 @@
               <h2>16K pixel command screen</h2>
               <p>
                 This is the second operational page. It preserves the original demo idea while reframing 16K as an ultra-wide
-                pixel command environment. The browser runtime is active, while Python, FastAPI, and Telegram backend code
+                pixel command environment. The browser system is active, while Python, FastAPI, and Telegram backend code
                 are embedded as exportable text blueprints inside this same HTML.
               </p>
             </div>
@@ -1325,10 +1325,10 @@
           </div>
 
           <div class="meters">
-            <div class="meter"><small>Runtime</small><b id="runtimeMeter">Browser + Python Blueprint</b></div>
+            <div class="meter"><small>System</small><b id="runtimeMeter">Browser + Python Blueprint</b></div>
             <div class="meter"><small>Actions</small><b id="actionsMeter">0</b></div>
             <div class="meter"><small>Screen</small><b id="capMeter">16K PX</b></div>
-            <div class="meter"><small>Governance Gate</small><b id="gateMeter">Owner</b></div>
+            <div class="meter"><small>Your permission</small><b id="gateMeter">Owner</b></div>
           </div>
         </div>
 
@@ -1342,7 +1342,7 @@
               <div class="lights"><i></i><i></i><i></i></div>
               <span id="termTitle">python_runtime.py</span>
             </div>
-            <pre id="trace"># Agent Portal runtime loaded
+            <pre id="trace"># Agent Portal system loaded
 # Static browser execution layer is active
 # Python/FastAPI/Telegram blueprints are embedded inside this HTML
 # Choose a capability or chat freely
@@ -1362,7 +1362,7 @@
         </div>
 
         <div class="inputShell">
-          <textarea id="prompt" placeholder="Message the Python 16K runtime..." oninput="updateConsoleChars()" onkeydown="handleKey(event)"></textarea>
+          <textarea id="prompt" placeholder="Message the Python 16K system..." oninput="updateConsoleChars()" onkeydown="handleKey(event)"></textarea>
           <button class="send" onclick="sendMsg()">↗</button>
         </div>
 
@@ -1382,7 +1382,7 @@
           <p class="metaLine">
             <span>
               This log records browser-level contact after the portal opens: load, focus, visibility, clicks, keyboard events,
-              mouse movement samples, commands, voice events, Telegram simulations, Tech Agent activity, pause, stop, export, and governance decisions.
+              mouse movement samples, commands, voice events, Telegram simulations, Tech Agent activity, pause, stop, export, and management decisions.
             </span>
           </p>
 
@@ -1403,7 +1403,7 @@
           </div>
 
           <div class="codeTabs">
-            <button class="tabBtn active" id="codeTabPython" onclick="showCodePanel('pythonRuntime')">Python Runtime</button>
+            <button class="tabBtn active" id="codeTabPython" onclick="showCodePanel('pythonRuntime')">Python System</button>
             <button class="tabBtn" id="codeTabFastapi" onclick="showCodePanel('fastapiBackend')">FastAPI Backend</button>
             <button class="tabBtn" id="codeTabTelegram" onclick="showCodePanel('telegramBridge')">Telegram Bridge</button>
             <button class="tabBtn" id="codeTabDeploy" onclick="showCodePanel('deploymentNotes')">Deployment Notes</button>
@@ -1435,7 +1435,7 @@
             </div>
             <div class="integrationCard">
               <b>Evidence Pack Export</b>
-              <span>Exports browser evidence, command history, governance decisions, and technical activity.</span>
+              <span>Exports browser evidence, command history, management decisions, and technical activity.</span>
             </div>
             <div class="integrationCard">
               <b>Browser Voice Layer</b>
@@ -1443,7 +1443,7 @@
             </div>
             <div class="integrationCard">
               <b>Python Blueprint</b>
-              <span>Python runtime model is embedded as copyable code and optional Pyodide execution path.</span>
+              <span>Python system model is embedded as copyable code and optional Pyodide execution path.</span>
             </div>
             <div class="integrationCard">
               <b>FastAPI Blueprint</b>
@@ -1948,17 +1948,17 @@ async def telegram_webhook(request: Request):
 
     if text.startswith("/approve"):
         result = await portal_post("/decision", {"decision": "approved", "context": text})
-        await send_telegram(chat_id, "Governance decision recorded: approved.")
+        await send_telegram(chat_id, "Management decision recorded: approved.")
         return result
 
     if text.startswith("/reject"):
         result = await portal_post("/decision", {"decision": "rejected", "context": text})
-        await send_telegram(chat_id, "Governance decision recorded: rejected.")
+        await send_telegram(chat_id, "Management decision recorded: rejected.")
         return result
 
     if text.startswith("/override"):
         result = await portal_post("/decision", {"decision": "override", "context": text})
-        await send_telegram(chat_id, "Governance decision recorded: override.")
+        await send_telegram(chat_id, "Management decision recorded: override.")
         return result
 
     if text.startswith("/execute"):
@@ -1984,10 +1984,10 @@ SEIF AGENT PORTAL — DEPLOYMENT NOTES
    - It does not call localhost, ports, or hidden external services.
 
 2. Browser Python mode
-   - The Python runtime model is embedded as text.
+   - The Python system model is embedded as text.
    - "Activate Browser Python" attempts to load Pyodide from a public CDN.
    - This remains optional and zero-cost-first.
-   - If CDN access is blocked, the JavaScript runtime remains active.
+   - If CDN access is blocked, the JavaScript system remains active.
 
 3. Backend mode
    - FastAPI backend code is embedded as text.
@@ -2011,7 +2011,7 @@ SEIF AGENT PORTAL — DEPLOYMENT NOTES
 
 6. Evidence log
    - Captures browser-level activity after the page opens.
-   - Captures load, focus, blur, visibility, clicks, keyboard actions, sampled mouse movement, commands, voice actions, Telegram simulations, Tech Agent activity, pause, stop, governance decisions, export, and clearing.
+   - Captures load, focus, blur, visibility, clicks, keyboard actions, sampled mouse movement, commands, voice actions, Telegram simulations, Tech Agent activity, pause, stop, management decisions, export, and clearing.
    - It cannot detect physical proximity before the browser opens the page.
    - Physical proximity monitoring needs approved hardware or OS-level sensors.
 
@@ -2049,20 +2049,20 @@ SEIF AGENT PORTAL — DEPLOYMENT NOTES
       ],
       capabilities: [
         ["Agent Command Center", "Coordinates agents, guests, instructions, and active command state.", "owner-controlled"],
-        ["Voice Call Runtime", "Starts voice interaction, transcript capture, and speech playback.", "owner-controlled"],
+        ["Voice Call System", "Starts voice interaction, transcript capture, and speech playback.", "owner-controlled"],
         ["Pause / Stop Authority", "Freezes or cancels all portal activity immediately.", "Owner authority"],
         ["Evidence Logging", "Records browser-level interactions after the portal is opened.", "owner-only"],
-        ["Governance Decisioning", "Flags decisions but leaves approval to the Owner.", "Owner authority"],
+        ["Management Decisioning", "Flags decisions but leaves approval to the Owner.", "Owner authority"],
         ["Zero-Cost Policy", "Evaluates every enhancement against zero-cost-first execution.", "Strategic rule"],
         ["Maximum-Revenue Strategy", "Prioritizes value creation, monetization, conversion, and cost reduction.", "Strategic rule"],
         ["Telegram Command Bridge", "Remote command compatibility for the Owner via approved backend bridge.", "Requires approval"],
         ["Tech Agent Code Studio", "Side pop-up chatbot for minor enhancements, backup, preview, export, and rollback.", "owner-controlled"],
-        ["Python Runtime Blueprint", "Contains embedded Python logic for backend-grade processing.", "Internal"],
+        ["Python System Blueprint", "Contains embedded Python logic for backend-grade processing.", "Internal"],
         ["FastAPI Backend Blueprint", "Contains server code for approved deployment outside static hosting.", "Exportable"],
         ["Guest Participation", "Allows guests to appear in the room without owner authority.", "Controlled"],
         ["Session Export", "Creates test evidence packs for review.", "Safe"],
         ["16K Pixel Screen", "Scales the command interface for ultra-wide display environments.", "Safe"],
-        ["Runtime Trace", "Shows safe execution trace without exposing secrets.", "Safe"],
+        ["System Trace", "Shows safe execution trace without exposing secrets.", "Safe"],
         ["Production Readiness View", "Frames the portal for final real testing before further action.", "Safe"]
       ]
     };
@@ -2302,7 +2302,7 @@ SEIF AGENT PORTAL — DEPLOYMENT NOTES
       const guest = {
         id: `guest_${state.guestCount}`,
         name: `Guest ${state.guestCount}`,
-        role: "Guest participant, no governance authority",
+        role: "Guest participant, no management authority",
         state: "joined"
       };
 
@@ -2882,7 +2882,7 @@ commercial: zero-cost-first / maximum-revenue checked
       $("telegramBridgeCode").textContent = TELEGRAM_BRIDGE_CODE.trim();
       $("deploymentNotesCode").textContent = DEPLOYMENT_NOTES_CODE.trim();
 
-      addMessage("mainMessages", "system", "Portal loaded. The Owner controls execution, pause, stop, governance, Telegram activation, Tech Agent patching, export, and rollback.");
+      addMessage("mainMessages", "system", "Portal loaded. The Owner controls execution, pause, stop, management, Telegram activation, Tech Agent patching, export, and rollback.");
       addMessage("messages", "system", "Second-page 16K console is ready. Evidence logging is active after page open.");
       addTechMessage("tech", "Tech Agent Code Studio ready.\nI handle minor enhancements only through backup-first, patch-preview, Owner approval, export, and rollback.");
 

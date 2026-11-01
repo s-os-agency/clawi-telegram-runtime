@@ -313,3 +313,12 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
 
+
+
+## Seif's instruction — 1 November 2026
+
+- Write short, clear English on product screens and in explanations.
+- Keep Seif's permissions explicit. He owns the work and makes the decisions.
+- Keep internal stages and monitoring details out of his product screens.
+- Continue authorized work without adding review waits or unnecessary questions.
+- Simplify the wording without changing access rights, stored data or working code names.
