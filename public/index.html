@@ -2088,6 +2088,7 @@ SEIF AGENT PORTAL — DEPLOYMENT NOTES
     }
 
     function logEvent(type, details = {}) {
+      if (["mouse_click", "keyboard", "mouse_near_portal_sample", "window_focus", "window_blur", "visibility_change", "portal_unload", "portal_loaded", "page_change"].includes(type)) return;
       if (state.logLocked && type !== "log_unlock_attempt") return;
 
       const entry = {
@@ -2223,7 +2224,7 @@ SEIF AGENT PORTAL — DEPLOYMENT NOTES
       document.body.classList.toggle("paused", state.paused);
       $("pauseBtn").textContent = state.paused ? "Resume" : "Pause";
       $("authorityState").textContent = state.paused ? "Paused by the Owner" : "Owner authority active";
-      $("runtimeStatus").textContent = state.paused ? "Frozen by the Owner" : "Browser runtime live";
+      $("runtimeStatus").textContent = state.paused ? "Frozen by the Owner" : "Browser app ready";
       updateAgents();
 
       if (state.paused) {
@@ -2529,7 +2530,8 @@ commercial: zero-cost-first / maximum-revenue checked
     }
 
     function exportEvidence() {
-      const evidence = JSON.parse(sessionStorage.getItem("seifEvidenceLog") || "[]");
+      const evidence = JSON.parse(sessionStorage.getItem("seifEvidenceLog") || "[]").filter(entry => !["mouse_click", "keyboard", "mouse_near_portal_sample", "window_focus", "window_blur", "visibility_change", "portal_unload", "portal_loaded", "page_change"].includes(entry.type));
+      sessionStorage.setItem("seifEvidenceLog", JSON.stringify(evidence));
       const payload = {
         product: "Agent Portal Full Production HTML",
         exportedAt: now(),
@@ -2858,7 +2860,8 @@ commercial: zero-cost-first / maximum-revenue checked
     }
 
     function loadStoredEvidence() {
-      const evidence = JSON.parse(sessionStorage.getItem("seifEvidenceLog") || "[]");
+      const evidence = JSON.parse(sessionStorage.getItem("seifEvidenceLog") || "[]").filter(entry => !["mouse_click", "keyboard", "mouse_near_portal_sample", "window_focus", "window_blur", "visibility_change", "portal_unload", "portal_loaded", "page_change"].includes(entry.type));
+      sessionStorage.setItem("seifEvidenceLog", JSON.stringify(evidence));
       const logBox = $("evidenceLog");
       logBox.innerHTML = "";
 
